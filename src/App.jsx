@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-custom-dark flex items-center justify-center p-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-7xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
         <ResumeForm
           formData={formData}
           setFormData={setFormData}
