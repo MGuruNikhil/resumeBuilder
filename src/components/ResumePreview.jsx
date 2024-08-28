@@ -5,25 +5,38 @@ const ResumePreview = ({ formData }) => {
   const handleDownloadPDF = () => {
     const element = document.getElementById('resumePreview');
     const opt = {
-      margin:       0.5,
-      filename:     'resume.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      margin: 0.5,
+      filename: 'resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
-    html2pdf().set(opt).from(element).save();
+
+    // Clone the element to manipulate it without affecting the original
+    const clonedElement = element.cloneNode(true);
+
+    // Remove empty sections
+    const sections = clonedElement.querySelectorAll('.section');
+    sections.forEach((section) => {
+      if (!section.textContent.trim()) {
+        section.remove();
+      }
+    });
+
+    html2pdf().set(opt).from(clonedElement).save();
   };
 
   return (
     <div className="p-5 bg-white rounded shadow-md">
       <h2 className="text-xl font-bold mb-4">Resume Preview</h2>
-      <div id="resumePreview" className="border p-4">
+      <div id="resumePreview" className="border p-4" style={{ backgroundColor: 'white' }}>
         <style>
           {`
             #resumePreview {
               font-family: Arial, sans-serif;
               color: #333;
               padding: 20px; /* Added padding */
+              background-color: white; /* Ensure background is white */
             }
             #resumePreview h1 {
               font-size: 24px;
@@ -65,40 +78,50 @@ const ResumePreview = ({ formData }) => {
           <p>{formData.email}</p>
           <p>{formData.mobileNumber}</p>
         </div>
-        <div className="section">
-          <h3>Education</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>{formData.education}</p>
-        </div>
-        <div className="section">
-          <h3>Work Experience</h3>
-          {formData.experience.map((exp, index) => (
-            <div key={index}>
-              <h4>{exp.title}</h4>
-              <p>{exp.company}</p>
-              <p>{exp.duration}</p>
-              <p>{exp.description}</p>
-            </div>
-          ))}
-        </div>
-        <div className="section">
-          <h3>Projects</h3>
-          {formData.projects.map((project, index) => (
-            <div key={index}>
-              <h4>{project.title}</h4>
-              <p>{project.description}</p>
-            </div>
-          ))}
-        </div>
-        <div className="section">
-          <h3>Achievements</h3>
-          {formData.achievements.map((achievement, index) => (
-            <p key={index}>{achievement}</p>
-          ))}
-        </div>
-        <div className="section">
-          <h3>Skills</h3>
-          <p style={{ whiteSpace: 'pre-wrap' }}>{formData.skills}</p>
-        </div>
+        {formData.education && (
+          <div className="section">
+            <h3>Education</h3>
+            <p style={{ whiteSpace: 'pre-wrap' }}>{formData.education}</p>
+          </div>
+        )}
+        {formData.experience.length > 0 && formData.experience[0].title && (
+          <div className="section">
+            <h3>Work Experience</h3>
+            {formData.experience.map((exp, index) => (
+              <div key={index}>
+                <h4>{exp.title}</h4>
+                <p>{exp.company}</p>
+                <p>{exp.duration}</p>
+                <p>{exp.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {formData.projects.length > 0 && formData.projects[0].title && (
+          <div className="section">
+            <h3>Projects</h3>
+            {formData.projects.map((project, index) => (
+              <div key={index}>
+                <h4>{project.title}</h4>
+                <p>{project.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {formData.achievements.length > 0 && formData.achievements[0] && (
+          <div className="section">
+            <h3>Achievements</h3>
+            {formData.achievements.map((achievement, index) => (
+              <p key={index}>{achievement}</p>
+            ))}
+          </div>
+        )}
+        {formData.skills && (
+          <div className="section">
+            <h3>Skills</h3>
+            <p style={{ whiteSpace: 'pre-wrap' }}>{formData.skills}</p>
+          </div>
+        )}
       </div>
       <button
         onClick={handleDownloadPDF}
