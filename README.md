@@ -1,8 +1,15 @@
-# React + Vite
+# Project Name: Resume Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description:
+Resume Builder is a command-line tool designed to help users create professional resumes effortlessly. It provides a simple and intuitive interface for generating well-formatted resumes in various formats, such as PDF and HTML.
 
-Currently, two official plugins are available:
+## Features:
+- Easy-to-use command-line interface
+- Multiple resume templates to choose from
+- Customizable sections for personal and professional information
+- Automatic generation of contact details, education, work experience, and skills sections
+- Export resumes in PDF and HTML formats
+- Support for multiple languages
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage:
+1. Visit the link mentioned in the About section and generate your resume by filling the form.
