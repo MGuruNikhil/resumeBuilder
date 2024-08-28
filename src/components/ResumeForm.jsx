@@ -3,8 +3,8 @@ import FormSection from './FormSection';
 
 const ResumeForm = ({ formData, handleChange, addField }) => {
   return (
-    <form className="space-y-8 bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-gray-900">Resume Builder</h2>
+    <form className="bg-custom-light p-5 rounded-md shadow-md">
+      <h2 className="text-custom-teal mb-4 font-black text-xl">Resume Builder</h2>
 
       <FormSection
         label="Full Name"
@@ -32,35 +32,33 @@ const ResumeForm = ({ formData, handleChange, addField }) => {
         value={formData.education}
         onChange={handleChange}
         name="education"
-        textarea
       />
 
-      <h2 className="text-xl font-bold mb-4">Work Experience</h2>
       {formData.experience.map((exp, index) => (
         <div key={index}>
           <FormSection
             label={`Job Title ${index + 1}`}
             value={exp.title}
             onChange={(e) => handleChange(e, index, 'experience', 'title')}
-            name={`experience-title-${index}`}
+            name={`job-title-${index}`}
           />
           <FormSection
             label={`Company ${index + 1}`}
             value={exp.company}
             onChange={(e) => handleChange(e, index, 'experience', 'company')}
-            name={`experience-company-${index}`}
+            name={`company-${index}`}
           />
           <FormSection
             label={`Duration ${index + 1}`}
             value={exp.duration}
             onChange={(e) => handleChange(e, index, 'experience', 'duration')}
-            name={`experience-duration-${index}`}
+            name={`duration-${index}`}
           />
           <FormSection
             label={`Description ${index + 1}`}
             value={exp.description}
             onChange={(e) => handleChange(e, index, 'experience', 'description')}
-            name={`experience-description-${index}`}
+            name={`description-${index}`}
             textarea
           />
         </div>
@@ -68,12 +66,11 @@ const ResumeForm = ({ formData, handleChange, addField }) => {
       <button
         type="button"
         onClick={() => addField('experience')}
-        className="bg-indigo-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-600"
+        className="mt-2 bg-custom-teal text-custom-dark px-4 py-2 rounded-md shadow-sm hover:bg-custom-gray"
       >
         Add Experience
       </button>
 
-      <h2 className="text-xl font-bold mb-4">Projects</h2>
       {formData.projects.map((project, index) => (
         <div key={index}>
           <FormSection
@@ -94,7 +91,7 @@ const ResumeForm = ({ formData, handleChange, addField }) => {
       <button
         type="button"
         onClick={() => addField('projects')}
-        className="bg-indigo-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-600"
+        className="mt-2 bg-custom-teal text-custom-dark px-4 py-2 rounded-md shadow-sm hover:bg-custom-gray"
       >
         Add Project
       </button>
@@ -113,7 +110,7 @@ const ResumeForm = ({ formData, handleChange, addField }) => {
       <button
         type="button"
         onClick={() => addField('achievements')}
-        className="bg-indigo-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-600"
+        className="mt-2 bg-custom-teal text-custom-dark px-4 py-2 rounded-md shadow-sm hover:bg-custom-gray"
       >
         Add Achievement
       </button>

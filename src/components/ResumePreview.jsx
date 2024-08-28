@@ -102,7 +102,7 @@ const ResumePreview = ({ formData }) => {
       </div>
       <button
         onClick={handleDownloadPDF}
-        className="mt-4 bg-indigo-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-600"
+        className="mt-4 bg-custom-teal text-custom-light px-4 py-2 rounded-md shadow-sm hover:bg-custom-gray"
       >
         Download PDF
       </button>
